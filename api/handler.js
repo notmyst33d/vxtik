@@ -1,4 +1,4 @@
-import worker from "../src/worker.mjs";
+import worker from "../src/index.js";
 
 export default worker.fetch;
 

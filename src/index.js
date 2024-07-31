@@ -1,7 +1,7 @@
 const REHYDRATION_REGEX = /<script[^>]+\bid="__UNIVERSAL_DATA_FOR_REHYDRATION__"[^>]*>/;
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request) {
     const url = new URL(request.url);
     if (url.pathname == "/favicon.ico") {
       return new Response();
@@ -18,4 +18,14 @@ export default {
     const stream = data["__DEFAULT_SCOPE__"]["webapp.video-detail"]["itemInfo"]["itemStruct"]["video"]["playAddr"];
     return fetch(stream, { headers: { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0", "Cookie": cookie } });
   },
+};
+
+export const config = {
+  runtime: "edge", 
+  regions: [
+    "cle1",
+    "iad1",
+    "pdx1",
+    "sfo1",
+  ],
 };

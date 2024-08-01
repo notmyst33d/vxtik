@@ -28,7 +28,7 @@ export default {
     const end = webpage.indexOf("</script>", start.index + start[0].length);
     const data = JSON.parse(webpage.substring(start.index + start[0].length, end));
     const stream = data["__DEFAULT_SCOPE__"]["webapp.video-detail"]["itemInfo"]["itemStruct"]["video"]["playAddr"];
-    const videoResponse = await fetch(stream, { headers: { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0", "Cookie": cookie } });
+    const videoResponse = await fetch(stream, { headers: { "User-Agent": UA, "Cookie": cookie } });
     const headers = new Headers(videoResponse.headers);
     headers.set("Content-Disposition", `inline; filename="tiktok_${fetchUrl.pathname.substring(1).replaceAll("/", "_")}.mp4"`)
     return new Response(videoResponse.body, { headers: headers })
